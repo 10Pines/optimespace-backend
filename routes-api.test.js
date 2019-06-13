@@ -15,9 +15,10 @@ describe('GET api/conferences', () => {
         idProvided = 1;
       });
       it('retreives the correct conference', () => {
+        const expectedId = idProvided;
         subject()
           .then(res => res.body)
-          .then(body => expect(body.conferenceId).toBe(idProvided));
+          .then(body => expect(body.conferenceId).toBe(expectedId));
       });
       it('has a rooms array', () => {
         subject()
@@ -28,6 +29,16 @@ describe('GET api/conferences', () => {
         subject()
           .then(res => res.body)
           .then(body => expect(Array.isArray(body.schedule)).toBe(true));
+      });
+    });
+    describe('and the conference doesnt exist', () => {
+      beforeEach(() => {
+        idProvided = 2;
+      });
+      it('retreives the correct conference', () => {
+        subject()
+          .then(res => res.status)
+          .then(status => expect(status).toBe(404));
       });
     });
   });
