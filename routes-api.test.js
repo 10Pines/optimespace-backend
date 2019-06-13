@@ -1,6 +1,6 @@
 import express from 'express';
 import supertest from 'supertest';
-import routes from './routes';
+import routes from './routes-api';
 
 it('works', () => {
   const app = express();
