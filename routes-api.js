@@ -1,18 +1,15 @@
+import * as Conferences from "./Conferences";
+import {conferences} from "./Conferences";
+
 const express = require ('express');
 const router = express.Router();
 
-router.get('/conferences/1', (req, res) => {
-  res.json({
-    conferenceId: 1,
-    rooms: [
-      { roomId: 1, name: 'sala roja' }
-    ],
-    schedule: [
-      { startsAt: 9, endsAt: 10, roomId: 1, talk: {name: "Charla copada de agile"} },
-      { startsAt: 9, endsAt: 11, roomId: 2, talk: {name: "Charla ladri de agile"} },
-      { startsAt: 9, endsAt: 12, roomId: 3, talk: {name: "Charla aburrida de agile"} }
-    ]
-  })
+router.get('/conferences/:id', (req, res) => {
+  let found = Conferences.conferences.find(c => c.conferenceId === (parseInt(req.params.id)));
+  found ? res.json(found) : res.status(404).send("Lucapo.end")
+});
+router.get('/conferences', (req, res) => {
+  res.json(conferences)
 });
 
 module.exports = router;
