@@ -5,13 +5,18 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watch"
   },
   "author": "10Pines",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "morgan": "^1.9.1"
+    "jest": "^24.8.0",
+    "morgan": "^1.9.1",
+    "supertest": "^4.0.2"
   }
 }
